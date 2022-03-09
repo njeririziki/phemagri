@@ -1,18 +1,11 @@
 import React, {useEffect,useState} from 'react'
 import {Tag,Card} from 'antd'
-import Grid from '../elems/Grid';
 import List from '../elems/List'
 import Table from '../elems/Expandable';
 import Radial from '../elems/Radial'
-import axios from 'axios'
 import '../../styles/components.css'
 
-const totals=[
-    {title:'Revenue', number: 134543,color:'#00c853', percent:'50'},
-    {title: 'Invoiced', number: 234225, color:'#e91e63', percent:'30'},
-    {title: 'New Clients', number:34,color:'#4dd0e1', percent:'12'}, 
-    {title: 'Accounts ', number: 134,color:'#ff7043', percent:'8'}, 
-  ]
+
   const data=[
     { id:'33462',  name:'Vegetables' },
     {id:'37312', name: ' Fruits'  },

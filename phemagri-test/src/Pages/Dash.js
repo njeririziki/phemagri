@@ -1,4 +1,4 @@
-import React, {useContext,useState,useEffect} from 'react'
+import React, {useContext} from 'react'
 import {RoleProvider,RoleContext} from '../Context/RoleContext' ;
 import HeaderComp from '../Components/Header';
 import {Layout} from 'antd'
@@ -8,7 +8,7 @@ import Financier from '../Components/dashboards/Financier';
 import Vendor from '../Components/dashboards/Vendor';
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content} = Layout;
 
 const RoledDash =()=>{
   const {creds}= useContext(RoleContext);

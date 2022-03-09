@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import Grid from '../elems/Grid';
 import List from '../elems/List';
-import {DollarSign,Truck,Package,ShoppingCart, Tool, ShoppingBag}  from 'react-feather'
+import {DollarSign,Truck,Package,ShoppingCart}  from 'react-feather'
 import '../../styles/components.css'
 import axios from 'axios'
 
@@ -10,8 +10,7 @@ const dollar= <DollarSign size='20px'/>
 const truck= <Truck size='20px'/>
 const packaged = <Package size='20px'/>
 const shoppingCart=< ShoppingCart size='20px'/>
-const tool= <Tool size='20px'/>
-const shoppingBag=< ShoppingBag size='20px'/>
+
 
 const data=[
     { id:'33462',  name:'Teaji  Fertilisers Ltd' },
