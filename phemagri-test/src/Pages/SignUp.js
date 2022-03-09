@@ -9,7 +9,7 @@ import { Link,useNavigate}  from 'react-router-dom';
 const susbcriptions=[
     {id:1, name:'Farmer'},
     {id:2, name:'Input Provider'},
-    {id:3, name:'Bank/Investor'},
+    {id:3, name:'Investor'},
     {id:4, name:'Vendor'}, 
 ]
 const { Option } = Select;
@@ -60,7 +60,8 @@ const SignIn = () => {
     }
       
                return(
-                    <Space size="middle" direction="horizontal" className={'root'}>
+                    <Space size="small" direction="horizontal" className={'signinroot'}>
+                      
                        <Form
                            form={form}
                            name="basic"
@@ -69,8 +70,9 @@ const SignIn = () => {
                            {...{initialValues}}
                             onFinishFailed={onFinishFailed}
                            requiredMark={false}
+                           size='small'
                            className={[screens.xs ? 'mobile-form' : 'signup-form']}>
-                           <FormItem style={{textAlign:'center'}}>
+                           <FormItem style={{textAlign:'center'}} >
                             <UnlockOutlined className='icon'/>
                            </FormItem>
                            <FormItem
@@ -78,7 +80,7 @@ const SignIn = () => {
                                label="Phone Number"
                                rules={[{required: true,
                                message: 'Phone Number is required'}]}>
-                               <Input size="middle" placeholder="Phone Number" />
+                               <Input size="small" placeholder="Phone Number" />
                            </FormItem>
                            <FormItem
                                name="username"
@@ -86,7 +88,7 @@ const SignIn = () => {
                                rules={[{required: true,
                
                                message: 'User Name is required'}]}>
-                               <Input size="middle" placeholder="username" />
+                               <Input size="small" placeholder="username" />
                            </FormItem>
                            <FormItem
                                name="email"
@@ -94,7 +96,7 @@ const SignIn = () => {
                                rules={[{required: true,
                                 type:'email',
                                message: 'email is required'}]}>
-                               <Input size="middle" placeholder="username@domain.com" />
+                               <Input size="small" placeholder="username@domain.com" />
                            </FormItem>
        
                            <FormItem
@@ -104,7 +106,7 @@ const SignIn = () => {
        
                                <Input.Password 
                                placeholder="Password" 
-                               size="middle" 
+                               size="small" 
                                onChange={()=>setDisable(false)}
                                   iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)} 
                                   />
@@ -120,7 +122,7 @@ const SignIn = () => {
                            </FormItem>
                            <FormItem >
                                <Button
-                                   size="large"
+                                   size="middle"
                                    type= 'primary'
                                    disabled={disable}
                                    loading={loading}
@@ -130,9 +132,7 @@ const SignIn = () => {
                                </Button>
                            </FormItem>
                            <FormItem >
-                               <Typography.Text type='secondary'>
-                                    <b> Do you already have an account? </b><br/>
-                               </Typography.Text>
+    
                             <Link to ='/'> 
                             <Typography>
                                Log In instead
@@ -141,7 +141,7 @@ const SignIn = () => {
                            </FormItem>
        
                        </Form>
-        
+                  
            </Space>
           );
       

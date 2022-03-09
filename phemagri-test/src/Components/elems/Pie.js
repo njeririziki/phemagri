@@ -4,7 +4,7 @@ import {ResponsivePie} from '@nivo/pie'
 
 const Pie = ({data}) => {
     return ( 
-        <div style={{height:'270px', width:'380px', backgroundColor:'#ffffff'}}>
+        <div style={{height:'350px', width:'380px', backgroundColor:'#ffffff'}}>
             <ResponsivePie
              data={data}
              margin={{ top: 20, right: 70, bottom: 20, left: 20 }}
@@ -19,7 +19,7 @@ const Pie = ({data}) => {
              radialLabelsTextColor={'#ffffff'}
              legends={[
                  {
-                     anchor: 'top-right',
+                     anchor: 'bottom-right',
                      direction: 'column',
                      justify: false,
                      translateX: 70,

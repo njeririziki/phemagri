@@ -19,7 +19,7 @@ const Header = (props) => {
     <div className="Header">
     <PageHeader
     title= {props.title}
-    subtitle={props.subtitle}
+    subTitle={props.subtitle}
     extra={
          <Button type='success' size='large' 
          onClick={logOut}>

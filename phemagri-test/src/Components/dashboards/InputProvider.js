@@ -26,9 +26,9 @@ const data=[
 
   const totals=[
     {title:'Pending Orders', number: 134, icon:shoppingCart, },
-     {title: 'Inventory', number: 234, icon:packaged} ,
+     {title: 'Inventory', number: 234000, icon:packaged} ,
     {title: 'Orders Shipped', number:34, icon:truck}, 
-    {title: ' Amount Billed', number: 134310, icon:dollar}, 
+    {title: ' Amount Billed', number: 560070, icon:dollar}, 
 ]
   
 const InputProvider =()=>{

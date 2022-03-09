@@ -26,7 +26,7 @@ const SignIn = () => {
         setSplash(true)
       const loading =  setTimeout(()=>{
          setSplash(false)
-         } ,8000)
+         } ,1000)
       return () => {
       clearTimeout(loading)
       }
@@ -68,9 +68,8 @@ const SignIn = () => {
         }
           else{
             return (
-             <Space size="large" direction="horizontal" className={'root'}>
-           
-
+             <Space size="large" direction="horizontal" className={'signinroot'}>
+        
                 <Form
                     form={form}
                     name="basic"
