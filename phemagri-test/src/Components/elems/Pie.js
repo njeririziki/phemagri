@@ -4,7 +4,7 @@ import {ResponsivePie} from '@nivo/pie'
 
 const Pie = ({data}) => {
     return ( 
-        <div style={{height:'370px', width:'350px', backgroundColor:'#ffffff'}}>
+        <div style={{height:'270px', width:'380px', backgroundColor:'#ffffff'}}>
             <ResponsivePie
              data={data}
              margin={{ top: 20, right: 70, bottom: 20, left: 20 }}

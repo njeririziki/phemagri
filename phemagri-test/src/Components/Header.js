@@ -21,7 +21,7 @@ const Header = (props) => {
     title= {props.title}
     subtitle={props.subtitle}
     extra={
-         <Button type='primary' 
+         <Button type='success' size='large' 
          onClick={logOut}>
                     Log out
                 </Button> } 
@@ -31,8 +31,3 @@ const Header = (props) => {
 }
  
 export default Header;
-
-
-// if (values.email === 'admin@sellamoment.com'){
-//     return history.push("/admin")
-//   }

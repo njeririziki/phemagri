@@ -5,11 +5,11 @@
  const Events = (props) => {
      return (  
      <Card title= {props.title} >
-     <Timeline mode='left'>
+     <Timeline mode='alternate'>
         {props.events.map(item=>(
            <Item color= {item.color} key={item.id}
            label={item.issue}>
-           <p> A recurring issue indicating a bug. </p>
+           <p>  </p>
          </Item>
          ))} 
      </Timeline>

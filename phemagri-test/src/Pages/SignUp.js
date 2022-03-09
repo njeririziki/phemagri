@@ -3,7 +3,7 @@ import {Row, Grid, Form, Space, Input, Button, message, Typography,Select } from
 import '../styles/SignIn.css'
 import {UnlockOutlined,EyeOutlined,EyeInvisibleOutlined, } from '@ant-design/icons';
 import { Link,useNavigate}  from 'react-router-dom';
-import App from '../App';
+
 
  
 const susbcriptions=[
@@ -24,18 +24,10 @@ const SignIn = () => {
     const [disable, setDisable] = React.useState(true);
     const [loading,setLoading]= useState(false)
     const navigate = useNavigate();
-    const [splash,setSplash]= useState(true);
+ 
 
     
-   useEffect(() => {
-       setSplash(true)
-     const loading =  setTimeout(()=>{
-        setSplash(false)
-        } ,8000)
-     return () => {
-     clearTimeout(loading)
-     }
-   }, [])
+
    
 
     const onFinish = async(values)=>{
@@ -66,10 +58,7 @@ const SignIn = () => {
     const onFinishFailed=(errorInfo)=>{
     message.error(`Failed to register user.Please try again`)
     }
-      if(splash){
-          return <App/>
-      }
-        else{
+      
                return(
                     <Space size="middle" direction="horizontal" className={'root'}>
                        <Form
@@ -80,7 +69,7 @@ const SignIn = () => {
                            {...{initialValues}}
                             onFinishFailed={onFinishFailed}
                            requiredMark={false}
-                           className={[screens.xs ? 'mobile-form' : 'desktop-form']}>
+                           className={[screens.xs ? 'mobile-form' : 'signup-form']}>
                            <FormItem style={{textAlign:'center'}}>
                             <UnlockOutlined className='icon'/>
                            </FormItem>
@@ -155,7 +144,7 @@ const SignIn = () => {
         
            </Space>
           );
-        }
+      
             
 }
  

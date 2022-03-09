@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Grid, Form, Space, Input, Button, message,Typography} from 'antd';
 import '../styles/SignIn.css'
 import {UnlockOutlined,EyeOutlined,EyeInvisibleOutlined,QuestionCircleOutlined, } from '@ant-design/icons';
 // import {withRouter, Link}  from 'react-router-dom'
 import {Link,useNavigate} from 'react-router-dom'
-
+import SplashScreen from './SplashScreen'
 // import {projectAuth} from '../Firebase/config'
 
 
@@ -18,9 +18,19 @@ const SignIn = () => {
     const initialValues = {};
     const screens = Grid.useBreakpoint();
     const [disable, setDisable] = React.useState(true);
-  
+    const [splash,setSplash]= useState(true);
     const [loading,setLoading]= useState(false)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setSplash(true)
+      const loading =  setTimeout(()=>{
+         setSplash(false)
+         } ,8000)
+      return () => {
+      clearTimeout(loading)
+      }
+    }, [])
 
     const onFinish = async(values)=>{
         setLoading(true)
@@ -32,8 +42,11 @@ const SignIn = () => {
                console.log('')
                let  password = values.password === credentials.password
                 if (email && password){
-                     navigate('/home');
-                    message.success('Sucessfuly logged in');
+                   
+                    const user= credentials.username;
+                    const role = credentials.role
+                    message.success(`Sucessfuly logged in ${user}`);
+                        navigate(`/home/${role}/${user}`);
                     form.resetFields();
                 }else {
          
@@ -49,7 +62,12 @@ const SignIn = () => {
     alert(`Failed to submit form ${errorInfo}`)
     }
 
-    return (
+   
+        if(splash){
+            return <SplashScreen/>
+        }
+          else{
+            return (
              <Space size="large" direction="horizontal" className={'root'}>
            
 
@@ -118,6 +136,7 @@ const SignIn = () => {
     </Space>
       
       );
+                        }
 }
  
 
