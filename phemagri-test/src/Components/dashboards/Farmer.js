@@ -71,6 +71,9 @@ const Farmer =()=>{
         <Card title= 'Fund Meter'>
         <Pie data={data}/>
         </Card>
+        <div style={{width:'30vw',marginLeft:'20px'}}>
+        <List header='Orders due' data={listData}   pageSize={3} action='Ship'/>
+        </div>
        </div>
         
        <div className="gridroot">
