@@ -1,5 +1,5 @@
 import React from 'react';
-import {PageHeader,Button} from 'antd'
+import {PageHeader,Button, Descriptions} from 'antd'
 
 import {useNavigate} from 'react-router-dom'
 
@@ -15,18 +15,21 @@ const Header = (props) => {
       }
       
     return ( 
-    <div className="Header">
+  
     <PageHeader
     title= {props.title}
-    subTitle={props.subtitle}
+    subTitle={props.subtitle }
+    className="Header"
     extra={
          <Button type='success' size='large' 
          onClick={logOut}>
                     Log out
                 </Button> } 
-    />    
+    >
+      
+      </PageHeader>   
  
-    </div> );
+   );
 }
  
 export default Header;

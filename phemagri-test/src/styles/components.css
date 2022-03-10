@@ -13,12 +13,17 @@
   background-color: #ecfffd;
   padding-left: 3rem;
   padding-right: 2rem;
+ height:fit-content;
   box-shadow: 3px 3px 3px #e9e9e9;
 }
 .Button{
   align-self:flex-end;
 }
-
+.grid{
+  background-color:#faf9f9;
+  display: flex;
+  justify-content: space-evenly;
+}
 .root{
   background-color:#faf9f9;
   display: flex;
@@ -31,12 +36,37 @@
   display: flex;
   justify-content: space-evenly;
   padding: 2rem;
+  width:auto
 
 }
 .radial{
   height:370px;
    width:450px; 
    background-color:#ffffff
+}
+.list{
+  width:50vw
+}
+.sidelist{
+  width:35vw
+}
+.pie{
+  height:350px;
+     width:380px;
+    background-color:#ffffff
+ }
+@media (max-width: 784px) {
+  .grid{
+    display: flex;
+    flex-direction: column
+  }  
+  .list{
+    width:90vw
+  }
+  .sidelist{
+    width:90vw
+  }
+
 }
 @media (max-width: 635px) {
   .Content{
@@ -47,11 +77,24 @@
     padding-left: 0rem;
     padding-right: 0rem;
   }
+  
   .gridroot{
     flex-direction: column;
     padding: 1rem;
   }
   .radial{
-    width:250px; 
+    width:330px; 
+  }
+  .list{
+    width:95vw;
+    padding:1rem
+  }
+  .sidelist{
+    width:95vw;
+    padding:1rem
+  }
+  .pie{
+    height:300px;
+        width:280px;
   }
 }

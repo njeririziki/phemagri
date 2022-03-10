@@ -66,11 +66,11 @@ const Vendor =()=>{
     return(
         <div className="gridroot">
 
-            <div style={{width:'50vw'}}>
+            <div className='list'>
             <Grid data={totals}/>
             <List header='My Farmers' data={profile}   pageSize={3} action='Buy'/>
             </div>
-            <div style={{width:'40vw',marginLeft:'20px'}}>
+            <div className='sidelist'>
             <List header='Top Selling Products' data={data}   pageSize={5} action='Sell' />
             </div>
             

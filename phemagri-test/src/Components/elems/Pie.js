@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card } from 'antd';
-import {ResponsivePie} from '@nivo/pie'
+import {ResponsivePie} from '@nivo/pie';
+import '../../styles/components.css'
 
 const Pie = ({data}) => {
     return ( 
-        <div style={{height:'350px', width:'380px', backgroundColor:'#ffffff'}}>
+        <div className='pie'>
             <ResponsivePie
              data={data}
              margin={{ top: 20, right: 70, bottom: 20, left: 20 }}
@@ -14,9 +15,9 @@ const Pie = ({data}) => {
              colors={ { datum: 'data.color' }}
              borderWidth={1}
              borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
-             
-             radialLabelsLinkColor={'#ffffff' }
-             radialLabelsTextColor={'#ffffff'}
+             enableArcLabels='false'
+             arcLinkLabelsColor={'#ffffff' }
+             arcLabelsTextColor={'#ffffff'}
              legends={[
                  {
                      anchor: 'bottom-right',

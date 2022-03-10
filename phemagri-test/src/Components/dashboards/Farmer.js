@@ -76,22 +76,19 @@ getData();
 }, [])
 
     return(
-      <div className="gridroot">
-        <div style={{width:'50vw'}}>
+      <div className="grid">
+        <div className='list'>
           <div className="gridroot">
         <ClientDetails details={details}/>
         <Card title= 'Fund Meter' bordered={false}>
         <Pie data={data}/>
         </Card>
-        <div style={{width:'30vw',marginLeft:'20px'}}>
-        <List header='Orders due' data={listData}   pageSize={3} action='Ship'/>
-        </div>
        </div>
-       <div style={{width:'50vw'}}>
+       <div className='list'>
        <List header='Sell to' data={profile}   pageSize={4} action='Contact'/>
        </div>
       </div>
-      <div style={{width:'35vw'}}>
+      <div  className='sidelist' >
        <List header='Get Funding' data={profile}   pageSize={9} action='Contact'/>
         </div>
       </div>

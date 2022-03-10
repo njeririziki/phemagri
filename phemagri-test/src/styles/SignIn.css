@@ -1,8 +1,8 @@
 .signinroot{
     display: flex;
     flex-direction: row;
-    height: 100vh;
     overflow:scroll;
+    height: 100vh;
     justify-content: center;
    background-color: #fdffff;;
 }
@@ -24,7 +24,6 @@
    align-items: center;
    justify-content: center;
    height: inherit;
-  
    background-color: white;
  
     box-shadow: 0 3px 6px rgba(238, 232, 232, 0.16), 0 3px 6px rgba(226, 217, 217, 0.23);
@@ -45,8 +44,10 @@
    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .signup-form {
+   margin-top: 30px;
+   margin-bottom: 20px;
    background-color: white;
-   padding: 2rem 1.5rem;
+   padding: 0.5rem 1.5rem;
    width: 350px;
 
    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

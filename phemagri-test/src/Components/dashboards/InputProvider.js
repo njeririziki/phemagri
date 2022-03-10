@@ -69,11 +69,11 @@ const InputProvider =()=>{
     return(
         <div className="gridroot">
 
-            <div style={{width:'50vw'}}>
+            <div className='list'>
             <Grid data={totals}/>
             <List header='Orders due' data={profile}   pageSize={3} action='Ship'/>
             </div>
-            <div style={{width:'40vw',marginLeft:'20px'}}>
+            <div className='sidelist'>
             <List header='Top Brands' data={data}   pageSize={5} action='Order' />
             </div>
             

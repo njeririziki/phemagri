@@ -33,11 +33,11 @@ function Dash() {
       <div>
         <Layout>
         
-          <HeaderComp title={creds.username} subtitle={creds.role}/>
+          <HeaderComp title={creds.username} subtitle={creds.role}
+          description={creds.email}/>
         
           <Content>
-           <RoledDash/>
-   
+           <RoledDash/>  
           </Content>
         </Layout>
       

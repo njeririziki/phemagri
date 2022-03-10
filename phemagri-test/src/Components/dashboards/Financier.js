@@ -108,10 +108,9 @@ const Financier =()=>{
           <Card title= 'Market Performance'>
           <Radial/>
           </Card>
-          <div style={{width:'55vw', marginLeft:'20px'}}>
+          <div className='sidelist'>
           <List header='Top Selling Products' data={data}   pageSize={4} action='Invest' />
           </div>
-      
           </div>
          
          <Table title='Top Farmers' data={tableData}  columns={columns} />

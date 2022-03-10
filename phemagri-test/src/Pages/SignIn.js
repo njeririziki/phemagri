@@ -26,7 +26,7 @@ const SignIn = () => {
         setSplash(true)
       const loading =  setTimeout(()=>{
          setSplash(false)
-         } ,1000)
+         } ,3000)
       return () => {
       clearTimeout(loading)
       }
