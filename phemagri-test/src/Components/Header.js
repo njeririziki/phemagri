@@ -1,14 +1,13 @@
-import React, {useContext,useState,useEffect} from 'react';
+import React from 'react';
 import {PageHeader,Button} from 'antd'
 
-import {Link, useLocation,useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 import '../styles/components.css'
 
 
 const Header = (props) => {
    
-    const [userDash, setUserDash] = useState(true)
       const navigate = useNavigate();
       const logOut =()=>{
       localStorage.clear();
@@ -19,7 +18,7 @@ const Header = (props) => {
     <div className="Header">
     <PageHeader
     title= {props.title}
-    subtitle={props.subtitle}
+    subTitle={props.subtitle}
     extra={
          <Button type='success' size='large' 
          onClick={logOut}>

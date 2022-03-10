@@ -1,5 +1,5 @@
 import { ResponsiveRadialBar } from '@nivo/radial-bar'
-
+import '../../styles/components.css'
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
@@ -57,28 +57,12 @@ const data =[
         }
       ]
     },
-    {
-      "id": "Marché",
-      "data": [
-        {
-          "x": "Vegetables",
-          "y": 226
-        },
-        {
-          "x": "Fruits",
-          "y": 227
-        },
-        {
-          "x": "Cereals",
-          "y": 25
-        }
-      ]
-    }
+   
   ]
 
 const MyResponsiveRadialBar = () => {
     return ( 
-    <div style={{height:'370px', width:'450px', backgroundColor:'#ffffff'}}>
+    <div className='radial'>
     <ResponsiveRadialBar
         data={data}
         valueFormat=">-.2f"

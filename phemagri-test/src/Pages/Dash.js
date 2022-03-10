@@ -1,4 +1,4 @@
-import React, {useContext,useState,useEffect} from 'react'
+import React, {useContext} from 'react'
 import {RoleProvider,RoleContext} from '../Context/RoleContext' ;
 import HeaderComp from '../Components/Header';
 import {Layout} from 'antd'
@@ -8,7 +8,7 @@ import Financier from '../Components/dashboards/Financier';
 import Vendor from '../Components/dashboards/Vendor';
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content} = Layout;
 
 const RoledDash =()=>{
   const {creds}= useContext(RoleContext);
@@ -17,7 +17,7 @@ const RoledDash =()=>{
     return <Farmer/>
    }else if(creds.role === 'Input Provider'){
      return <InputProvider/> 
-   } else if(creds.role === 'Bank/Investor'){
+   } else if(creds.role === 'Investor'){
     return <Financier/>
    }else{
     return <Vendor/>
@@ -33,18 +33,11 @@ function Dash() {
       <div>
         <Layout>
         
-          <HeaderComp title={creds.username}/>
+          <HeaderComp title={creds.username} subtitle={creds.role}/>
         
           <Content>
            <RoledDash/>
-              {/* {creds.role === 'Input Provider'? <InputProvider/>
-              :
-              <Farmer/> } */}
-              {/* <Farmer/>
-              <Financier/>
-              <Vendor/>
-              <InputProvider/>  */}
-        
+   
           </Content>
         </Layout>
       

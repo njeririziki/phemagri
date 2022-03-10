@@ -1,4 +1,5 @@
 import React, {useEffect,useState}from 'react'
+import drop from '../../drop.png'
 import {Card,Avatar,Typography,Tooltip,Menu,Dropdown, Button} from 'antd'
 import {Edit3,MoreHorizontal,Plus, User} from 'react-feather'
 import { UserOutlined } from '@ant-design/icons';
@@ -6,7 +7,7 @@ import { UserOutlined } from '@ant-design/icons';
 const Dets=({details})=>(
     <div>
     <Avatar style={{ width:'200px',height:'200px', backgroundColor:'#000000',marginBottom:'20px'}}
-    src={details.photo} icon={<UserOutlined/>} />
+    src={drop} icon={<UserOutlined/>} />
     
     <Typography.Title level={4}>
     {details.name}

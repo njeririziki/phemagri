@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Card, Typography, Divider,Grid,Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { RiseOutlined } from '@ant-design/icons';
 
  
 const FarmersList = ({data,date,header,actions,pageSize,action}) => {
@@ -20,10 +20,10 @@ const FarmersList = ({data,date,header,actions,pageSize,action}) => {
         >
             <List.Item.Meta 
            avatar={
-            <Avatar src={item.avatar} style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+            <Avatar src={item.avatar} style={{ backgroundColor: '#87d068' }} icon={<RiseOutlined />} />
            }
             title={item.name}
-            description= {<p> Contact: {item.phone} <br/> {item.email}</p>}
+            description= {<p>  {item.phone} <br/> {item.email}</p>}
             />
            {/* <div>  
            { item.avatar? <Link href='/client_id' as={`/client_${item.key}`}>
