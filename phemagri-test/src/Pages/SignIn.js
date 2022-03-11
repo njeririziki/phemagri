@@ -2,13 +2,10 @@ import React,{useState,useEffect} from 'react';
 import { Grid, Form, Space, Input, Button, message,Typography} from 'antd';
 import '../styles/SignIn.css'
 import {UnlockOutlined,EyeOutlined,EyeInvisibleOutlined,QuestionCircleOutlined, } from '@ant-design/icons';
-// import {withRouter, Link}  from 'react-router-dom'
 import {Link,useNavigate} from 'react-router-dom'
 import SplashScreen from './SplashScreen'
-// import {projectAuth} from '../Firebase/config'
+import axios from '../Utilities/Api'
 
-
-//, VisibilityOutlined, VisibilityOffOutlined, ContactSupportOutlined
 
 const {Item: FormItem} = Form;
 const SignIn = () => {
@@ -35,25 +32,31 @@ const SignIn = () => {
     const onFinish = async(values)=>{
         setLoading(true)
         
-                // await projectAuth.signInWithEmailAndPassword(values.email,values.password);
-               const registered= localStorage.getItem("creds");
-                 const credentials= JSON.parse(registered);
-              let  email = values.email === credentials.email
-               console.log('')
-               let  password = values.password === credentials.password
-                if (email && password){
+        try{
+                const auth= await axios.post('/login',values)
+                console.log(auth);
+                const {user}= auth.data;
+                if(auth.status === 200){
+                    message.success('Successful login')
+                    const userInfo = JSON.parse(user);
+                    console.log(userInfo);
+                    const userName= userInfo.first_name + userInfo.last_name;
+                    const role = userInfo.role_id
+                    // const res= await axios.get(`/roles?id=${user.role_id}`)
+                    // const {success,data}= res.data;
+                    // const roleName = data.role_name;
+                  message.success(`Sucessfuly logged in ${userName}`);
+                    //  navigate(`/home/${role}/${userName}`);
+                     form.resetFields();
                    
-                    const user= credentials.username;
-                    const role = credentials.role
-                    message.success(`Sucessfuly logged in ${user}`);
-                        navigate(`/home/${role}/${user}`);
-                    form.resetFields();
-                }else {
-         
-           message.error(`Email and password is wrong`);
-           console.log(`error creating user `)
+                } else{
+                   message.error('You entered the wrong username or password. Please try again');
+                }
 
-        };
+    
+    } catch(error){
+        alert(` Encountering ${error}`);
+    } 
         setLoading(false)
             
     }
@@ -83,11 +86,10 @@ const SignIn = () => {
                      <UnlockOutlined className='icon'/>
                     </FormItem>
                     <FormItem
-                        name="email"
-                        label="email"
+                        name="phone"
+                        label="Phone Number"
                         rules={[{required: true,
-                         type:'email',
-                        message: 'email is required'}]}>
+                        message: 'Please use a valid phone number'}]}>
                         <Input size="large" placeholder="username@domain.com" />
                     </FormItem>
 
@@ -140,3 +142,20 @@ const SignIn = () => {
  
 
 export default SignIn;
+
+    //        const registered= localStorage.getItem("creds");
+        //          const credentials= JSON.parse(registered);
+        //       let  email = values.email === credentials.email
+        //        console.log('')
+        //        let  password = values.password === credentials.password
+        //         if (email && password){
+                   
+        //             const user= credentials.username;
+        //             const role = credentials.role
+        //             message.success(`Sucessfuly logged in ${user}`);
+        //                 navigate(`/home/${role}/${user}`);
+        //             form.resetFields();
+        //         }else {
+         
+        //    message.error(`Email and password is wrong`);
+        //    console.log(`error creating user `)};

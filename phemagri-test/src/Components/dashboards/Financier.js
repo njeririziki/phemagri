@@ -1,8 +1,8 @@
 import React, {useEffect,useState} from 'react'
 import {Tag,Card} from 'antd'
-import List from '../elems/List'
-import Table from '../elems/Expandable';
-import Radial from '../elems/Radial'
+import List from '../ReusableComponents/List'
+import Table from '../ReusableComponents/Expandable';
+import Radial from '../ReusableComponents/Radial'
 import '../../styles/components.css'
 
 

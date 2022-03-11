@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
-import Grid from '../elems/Grid';
-import List from '../elems/List';
+import Grid from '../ReusableComponents/Grid';
+import List from '../ReusableComponents/List';
 import {DollarSign,Truck,Package,ShoppingCart}  from 'react-feather'
 import '../../styles/components.css'
 import axios from 'axios'

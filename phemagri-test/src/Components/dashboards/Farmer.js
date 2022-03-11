@@ -1,14 +1,13 @@
 import React, { useContext,useEffect,useState } from 'react'
-import ClientDetails  from '../elems/ClientDetails';
-import List from '../elems/List'
-import Pie from '../elems/Pie'
+import ClientDetails  from '../ReusableComponents/ClientDetails';
+import List from '../ReusableComponents/List'
+import Pie from '../ReusableComponents/Pie'
 import '../../styles/components.css'
 import { Card } from 'antd';
 import { RoleContext } from '../../Context/RoleContext';
 import axios from 'axios'
 
  
-
 const data=[
   {
     
