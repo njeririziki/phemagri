@@ -1,10 +1,12 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { Grid, Form, Space, Input, Button, message,Typography} from 'antd';
 import '../styles/SignIn.css'
 import {UnlockOutlined,EyeOutlined,EyeInvisibleOutlined,QuestionCircleOutlined, } from '@ant-design/icons';
 import {Link,useNavigate} from 'react-router-dom'
 import SplashScreen from './SplashScreen'
 import axios from '../Utilities/Api'
+import {RoleContext} from '../Context/RoleContext'
+import {createCookie} from '../Utilities/Session'
 
 
 const {Item: FormItem} = Form;
@@ -18,6 +20,7 @@ const SignIn = () => {
     const [splash,setSplash]= useState(true);
     const [loading,setLoading]= useState(false)
     const navigate = useNavigate();
+    const {updateUser}= useContext(RoleContext);
 
     useEffect(() => {
         setSplash(true)
@@ -35,18 +38,18 @@ const SignIn = () => {
         try{
                 const auth= await axios.post('/login',values)
                 console.log(auth);
-                const {user}= auth.data;
+                const {token,user}= auth.data;
                 if(auth.status === 200){
-                    message.success('Successful login')
-                    const userInfo = JSON.parse(user);
-                    console.log(userInfo);
-                    const userName= userInfo.first_name + userInfo.last_name;
-                    const role = userInfo.role_id
-                    // const res= await axios.get(`/roles?id=${user.role_id}`)
-                    // const {success,data}= res.data;
-                    // const roleName = data.role_name;
+                    console.log(user);
+                    const userName= user.first_name +" "+ user.last_name;
+                    const role = user.role_id ;
+                           
                   message.success(`Sucessfuly logged in ${userName}`);
-                    //  navigate(`/home/${role}/${userName}`);
+                  //navigating to the user profile page
+                      navigate(`/home/${role}/${userName}`);
+                      //updating the context api
+                      updateUser(user);
+                      createCookie(user);
                      form.resetFields();
                    
                 } else{
@@ -90,7 +93,7 @@ const SignIn = () => {
                         label="Phone Number"
                         rules={[{required: true,
                         message: 'Please use a valid phone number'}]}>
-                        <Input size="large" placeholder="username@domain.com" />
+                        <Input size="large" placeholder="" />
                     </FormItem>
 
                     <FormItem
@@ -112,6 +115,7 @@ const SignIn = () => {
                             size="large"
                             type= 'primary'
                             disabled={ disable}
+                            loading={loading}
                             htmlType="submit" >
                             Sign in 
                         </Button>
@@ -143,7 +147,7 @@ const SignIn = () => {
 
 export default SignIn;
 
-    //        const registered= localStorage.getItem("creds");
+    //        const registered= localStorage.getItem("user");
         //          const credentials= JSON.parse(registered);
         //       let  email = values.email === credentials.email
         //        console.log('')
@@ -159,3 +163,9 @@ export default SignIn;
          
         //    message.error(`Email and password is wrong`);
         //    console.log(`error creating user `)};
+
+
+
+         // const res= await axios.get(`/roles?id=${user.role_id}`)
+                    // const {success,data}= res.data;
+                    // const roleName = data.role_name;

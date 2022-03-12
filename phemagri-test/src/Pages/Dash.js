@@ -8,16 +8,16 @@ import Financier from '../Components/dashboards/Financier';
 import Vendor from '../Components/dashboards/Vendor';
 
 
-const { Content} = Layout;
+const {Content} = Layout;
 
 const RoledDash =()=>{
-  const {creds}= useContext(RoleContext);
+  const {user}= useContext(RoleContext);
 
-  if(creds.role === 'Farmer'){
+  if(user.role_id === 1){
     return <Farmer/>
-   }else if(creds.role === 'Input Provider'){
+   }else if(user.role_id === 2){
      return <InputProvider/> 
-   } else if(creds.role === 'Investor'){
+   } else if(user.role_id === 3){
     return <Financier/>
    }else{
     return <Vendor/>
@@ -25,16 +25,14 @@ const RoledDash =()=>{
 }
 
 function Dash() {
-  const {creds}= useContext(RoleContext);
+  const {user}= useContext(RoleContext);
    
- 
-
     return (
       <div>
         <Layout>
         
-          <HeaderComp title={creds.username} subtitle={creds.role}
-          description={creds.email}/>
+          <HeaderComp title={user.first_name} subtitle={user.user_id}
+          description={user.email}/>
         
           <Content>
            <RoledDash/>  
@@ -45,12 +43,12 @@ function Dash() {
     );
   }
 
-  function Dashboard() {
-    return (
-      <RoleProvider>
-      <Dash/>
-      </RoleProvider>
-    )
-  }
+  // function Dashboard() {
+  //   return (
+  //     <RoleProvider>
+  //     <Dash/>
+  //     </RoleProvider>
+  //   )
+  // }
   
-  export default Dashboard;
+  export default Dash;

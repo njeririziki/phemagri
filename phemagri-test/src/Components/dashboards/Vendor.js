@@ -60,7 +60,7 @@ const Vendor =()=>{
      //    console.log(profile)
         return request
     }
-   getData();  
+    return getData();  
     }, [])
     
     return(

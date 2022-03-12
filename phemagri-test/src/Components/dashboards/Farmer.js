@@ -32,12 +32,12 @@ const data=[
 const Farmer =()=>{
 
   const [profile,setProfile]= useState();
-  const {creds}= useContext(RoleContext);
+  const {user}= useContext(RoleContext);
 
   const details={
-    name:creds.username,
-    description:creds.role,
-    phone: creds.phoneNumber
+    name:user.first_name+" "+user.last_name,
+    description:user.id,
+    phone: user.phone
 }
 
 
@@ -71,7 +71,7 @@ useEffect(() => {
  //    console.log(profile)
     return request
 }
-getData();  
+return getData();  
 }, [])
 
     return(

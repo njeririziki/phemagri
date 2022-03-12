@@ -6,6 +6,13 @@
     justify-content: center;
    background-color: #fdffff;;
 }
+.signuproot{
+   display: flex;
+   flex-direction: row;
+   overflow:scroll;
+   justify-content: center;
+  background-color: #fdffff;;
+}
 .mobileroot{
 
 }

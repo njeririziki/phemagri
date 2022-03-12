@@ -10,8 +10,7 @@ const Header = (props) => {
    
       const navigate = useNavigate();
       const logOut =()=>{
-      localStorage.clear();
-      navigate('/signup');
+      navigate('/');
       }
       
     return ( 

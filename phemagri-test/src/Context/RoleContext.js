@@ -1,34 +1,35 @@
-import React, {useState,useEffect,createContext} from 'react'
-import axios from '../Utilities/Api'
+import React, {useState,useContext,createContext} from 'react'
+//import axios from '../Utilities/Api'
 
+// in the create context we pass down a function to allow a child componenent to 
+// update the user state in the provider
 const RoleContext = createContext({
-    creds:{},
-    setCreds:()=>{}
+    user:null,
+    updateUser:()=>{},
 });
 
+const initUser= {role:'Farmer', email:'njeri@test.com', username:'Njeri'};
+
+// This function provides components with
 const RoleProvider = ({children})=>{
 
-    const [creds, setCreds] = useState({})
-//     useEffect(() => {
-//     const registered= localStorage.getItem("creds");
-//     const credentials= JSON.parse(registered);
-//     const  user =  credentials.username;
-//     const  role =  credentials.role;
-//      console.log(credentials)
-  
-//     if (user && role){
-//      setCreds(credentials)
-//      }
+    const [user, setUser] = useState(initUser);
 
-// }, [])
- 
-console.log(creds);
+function updateUser(credentials){
+    console.log(credentials);
+    setUser(credentials)
+}
 return(
-    <RoleContext.Provider value={{creds,setCreds}} >
+    <RoleContext.Provider value={{user,updateUser}} >
     {children}
     </RoleContext.Provider>
 )
    
 }
-
+// This is a custom hook to pass down context
+function useUserContext() {
+    const { user, updateUser } = useContext(RoleContext);
+  
+    return { user, updateUser };
+  }
 export {RoleContext,RoleProvider};
