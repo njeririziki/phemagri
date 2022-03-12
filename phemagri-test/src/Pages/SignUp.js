@@ -5,10 +5,10 @@ import {UnlockOutlined,EyeOutlined,EyeInvisibleOutlined, } from '@ant-design/ico
 import { Link,useNavigate}  from 'react-router-dom';
 import axios from '../Utilities/Api';
 import {RoleContext} from '../Context/RoleContext'
-
+import {createCookie} from '../Utilities/Session'
 
  
-const susbcriptions=[
+const roleTypes=[
     {id:1, name:'Farmer'},
     {id:2, name:'Input Provider'},
     {id:3, name:'Bank/Investor'},
@@ -20,6 +20,7 @@ const options=(arr)=>(
     );
 const {Item: FormItem} = Form;
 const SignUp = () => {
+    
     const [form] = Form.useForm();
     const initialValues = {};
     const screens = Grid.useBreakpoint();
@@ -27,22 +28,24 @@ const SignUp = () => {
     const [loading,setLoading]= useState(false)
     const navigate = useNavigate();
     const {updateUser}= useContext(RoleContext);
- 
+     const [password,setPassword] =useState()
 
-    
     const onFinish = async(values)=>{
         setLoading(true)
         try{
             const auth= await axios.post('/register',values)
-            console.log(auth);
+            // console.log(auth);
             const {token,user}= auth.data;
             if(auth.status === 201){
-                console.log(user);
+        //    /     console.log(user);
+                // console.log(token);
                 const userName= user.first_name +" "+ user.last_name;
                 const role = user.role_id
               message.success(`Sucessfuly logged in ${userName}`);
                   navigate(`/home/${role}/${userName}`);
                    updateUser(user);
+                   createCookie(token);
+               
                  form.resetFields();
                
             } else{
@@ -52,11 +55,14 @@ const SignUp = () => {
 
         } catch(error){
             alert(` Encountering ${error}`);
-        } 
-   
+        }  
           setLoading(false);
             
     }
+     const validatePassword =()=>{
+        
+        setDisable(true)
+     }
 
     const onFinishFailed=(errorInfo)=>{
     message.error(`Failed to register user.Please try again`)
@@ -82,14 +88,18 @@ const SignUp = () => {
                                name="phone"
                                label="Phone Number"
                                rules={[{required: true,
-                               message: 'Phone Number is required'}]}>
+                                type:'string',
+                                len:10,
+                               message: 'Phone Number is required',
+                                whitespace:false }]}>
                                <Input size="small" placeholder="Phone Number" />
                            </FormItem>
                            <FormItem
                                name="first_name"
                                label="First Name"
                                rules={[{required: true,
-               
+                                type:'string',
+                                whitespace:false,
                                message: 'Please enter your first name'}]}>
                                <Input size="small" placeholder="first name" />
                            </FormItem>
@@ -97,7 +107,8 @@ const SignUp = () => {
                                name="last_name"
                                label="Sir Name"
                                rules={[{required: true,
-               
+                                type:'string',
+                                whitespace:false,
                                message: 'Sir Name is required'}]}>
                                <Input size="small" placeholder="Sir name" />
                            </FormItem>
@@ -113,19 +124,24 @@ const SignUp = () => {
                            <FormItem
                                name="password"
                                label="Password"
-                               rules={[{required: true, message: 'Please enter a strong passwird'}]}>
+                               rules={[{required: true, 
+                                whitespace:false,
+                               message: 'Please enter a strong passwird'}]}>
        
                                <Input.Password 
                                placeholder="Password" 
                                size="small" 
-                               onChange={()=>setDisable(false)}
+                            
                                   iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)} 
                                   />
                            </FormItem>
                            <FormItem
                                name="password_confirmation"
                                label="Confirm Password"
-                               rules={[{required: true, message: 'Enter the same password as above'}]}>
+                               validatePassword
+                               rules={[{required: true,
+                                whitespace:false,
+                               message: 'Enter the same password as above'}]}>
        
                                <Input.Password 
                                placeholder="Password" 
@@ -140,7 +156,7 @@ const SignUp = () => {
                                rules={[{required: true,
                                message: 'Please select your role'}]}>
                              <Select placeholder='Role'>
-                                            {options(susbcriptions)}
+                                            {options(roleTypes)}
                               </Select>
                            </FormItem>
                            <FormItem >

@@ -41,6 +41,7 @@ const SignIn = () => {
                 const {token,user}= auth.data;
                 if(auth.status === 200){
                     console.log(user);
+                    console.log(token);
                     const userName= user.first_name +" "+ user.last_name;
                     const role = user.role_id ;
                            
@@ -49,7 +50,8 @@ const SignIn = () => {
                       navigate(`/home/${role}/${userName}`);
                       //updating the context api
                       updateUser(user);
-                      createCookie(user);
+                      createCookie(token);
+                    
                      form.resetFields();
                    
                 } else{

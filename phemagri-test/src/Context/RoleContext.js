@@ -9,7 +9,6 @@ const RoleContext = createContext({
 });
 
 const initUser= {role:'Farmer', email:'njeri@test.com', username:'Njeri'};
-
 // This function provides components with the data stored.
 const RoleProvider = ({children})=>{
 
