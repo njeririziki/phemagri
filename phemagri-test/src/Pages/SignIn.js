@@ -26,7 +26,7 @@ const SignIn = () => {
         setSplash(true)
       const loading =  setTimeout(()=>{
          setSplash(false)
-         } ,3000)
+         } ,1000)
       return () => {
       clearTimeout(loading)
       }
@@ -94,7 +94,10 @@ const SignIn = () => {
                         name="phone"
                         label="Phone Number"
                         rules={[{required: true,
-                        message: 'Please use a valid phone number'}]}>
+                            type:'string',
+                            len:10,
+                            whitespace:false,
+                        message: 'Phone number should be only 10 digits with no spaces'}]}>
                         <Input size="large" placeholder="" />
                     </FormItem>
 
@@ -102,7 +105,6 @@ const SignIn = () => {
                         name="password"
                         label="Password"
                         rules={[{required: true, message: 'Password is required'}]}>
-
                         <Input.Password 
                         placeholder="Password" 
                         size="large" 
@@ -116,7 +118,7 @@ const SignIn = () => {
                         <Button
                             size="large"
                             type= 'primary'
-                            disabled={ disable}
+                            disabled={disable}
                             loading={loading}
                             htmlType="submit" >
                             Sign in 

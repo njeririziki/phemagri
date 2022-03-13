@@ -36,8 +36,9 @@ const Farmer =()=>{
 
   const details={
     name:user.first_name+" "+user.last_name,
-    description:user.id,
-    phone: user.phone
+    email:user.email,
+    phone: user.phone,
+    location:user.location
 }
 
 

@@ -138,7 +138,6 @@ const SignUp = () => {
                            <FormItem
                                name="password_confirmation"
                                label="Confirm Password"
-                               validatePassword
                                rules={[{required: true,
                                 whitespace:false,
                                message: 'Enter the same password as above'}]}>

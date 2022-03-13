@@ -1,10 +1,12 @@
-import React, {useEffect,useState} from 'react'
+import React, {useContext,useState} from 'react'
 import {Tag,Card} from 'antd'
 import List from '../ReusableComponents/List'
 import Table from '../ReusableComponents/Expandable';
 import Radial from '../ReusableComponents/Radial'
+import ClientDetails  from '../ReusableComponents/ClientDetails';
 import '../../styles/components.css'
-
+import { RoleContext } from '../../Context/RoleContext';
+import axios from 'axios'
 
   const data=[
     { id:'33462',  name:'Vegetables' },
@@ -98,13 +100,21 @@ import '../../styles/components.css'
       amount: 457030,
       status: 'Funded',
     }]
-
+ 
+  
 
 const Financier =()=>{
-
+  const {user}= useContext(RoleContext);
+  const details={
+    name:user.first_name+" "+user.last_name,
+    email:user.email,
+    phone: user.phone,
+    location:user.location
+}
     return(
         <div className='root'>
-          <div className='gridroot'>
+          <div className='gridroot'>  
+          <ClientDetails details={details} style={{width:'inherit'}} />
           <Card title= 'Market Performance'>
           <Radial/>
           </Card>

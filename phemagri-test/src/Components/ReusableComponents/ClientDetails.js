@@ -11,11 +11,15 @@ const Dets=({details})=>(
     src={drop} icon={<UserOutlined/>} />
     
     <Typography.Title level={4}>
-    {details.name}
-    </Typography.Title>
-    <Typography.Text>
-    {details.description} 
+    {details.name} 
+    </Typography.Title >
+    <Typography.Text level={3}>
+    {details.phone} 
     </Typography.Text>
+    {/* <Typography.Text level={3}>
+    {details.email} 
+    </Typography.Text> */}
+
     </div>
    
 )
@@ -23,13 +27,19 @@ const Edit=({details})=>(
     <div>
  
     <Typography.Title level={4}>
-    {details.name} 
+    UserName:{details.name}
     </Typography.Title>
     <Typography.Text>
-    {details.description} 
+   Phone Number: {details.phone} 
     </Typography.Text>
     <Typography.Text>
-    {details.email} 
+     Email: {details.email} 
+    </Typography.Text>
+    {/* <Typography.Text>
+  Role: {details.role_id} 
+    </Typography.Text> */}
+    <Typography.Text>
+  Location: {details.location} 
     </Typography.Text>
    
     </div>
@@ -75,7 +85,7 @@ const ClientDetails = ({details,id}) => {
                  onClick={()=>setOpenProfileForm(true)}
                  ></Button>,
               </Tooltip>,
-            <Tooltip title="Import Products">
+            <Tooltip title="More">
               <Dropdown overlay={ActionMenu}>
                   <MoreHorizontal/>
               </Dropdown>       
