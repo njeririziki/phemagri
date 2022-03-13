@@ -35,8 +35,7 @@ function Dash() {
           description={user.email}/>
         
           <Content>
-           {/* <RoledDash/>   */}
-           <Financier/>
+           <RoledDash/>  
           </Content>
         </Layout>
       
