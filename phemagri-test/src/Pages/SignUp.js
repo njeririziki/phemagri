@@ -59,11 +59,18 @@ const SignUp = () => {
           setLoading(false);
             
     }
-     const validatePassword =()=>{
+    //  const validatePassword =()=>{
         
-        setDisable(true)
-     }
-
+        
+    //  }
+     const validatePassword  = (_, value) => {
+        if (value.number === password) {
+          return Promise.resolve();
+          setDisable(true)
+        }
+    
+        return Promise.reject(new Error('Confirm password must be the same as password'));
+      };
     const onFinishFailed=(errorInfo)=>{
     message.error(`Failed to register user.Please try again`)
     }
@@ -80,6 +87,7 @@ const SignUp = () => {
                             onFinishFailed={onFinishFailed}
                            requiredMark={false}
                            size='small'
+                           scrollToFirstError
                            className={[screens.xs ? 'mobile-form' : 'signup-form']}>
                            <FormItem style={{textAlign:'center'}} >
                             <UnlockOutlined className='icon'/>
@@ -87,12 +95,27 @@ const SignUp = () => {
                            <FormItem
                                name="phone"
                                label="Phone Number"
+                            //   tooltip="Format 0711223344 no spaces"
                                rules={[{required: true,
                                 type:'string',
-                                len:10,
-                               message: 'Phone Number is required',
-                                whitespace:false }]}>
-                               <Input size="small" placeholder="Phone Number" />
+                               
+                               message: 'Phone Number should be 10 digits',
+                                whitespace:false },
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                      if (!value || value !== " ") {
+                                        return Promise.resolve();
+                                      }
+                                       return Promise.reject(new Error('phone number is should have 10 digits'));
+                                    },
+                                    // len(_,value){
+                                    //     if(value ===10){
+                                    //         return Promise.resolve();
+                                    //     }
+                                    //     return Promise.reject(new Error('phone number is less than 10'));
+                                    // }
+                                  }),]}>
+                               <Input size="small" placeholder="0711223344" />
                            </FormItem>
                            <FormItem
                                name="first_name"
@@ -126,21 +149,37 @@ const SignUp = () => {
                                label="Password"
                                rules={[{required: true, 
                                 whitespace:false,
-                               message: 'Please enter a strong passwird'}]}>
+                                min:4,
+                               message: 'Please enter a strong password'}]}
+                               hasFeedback
+                               >
        
                                <Input.Password 
                                placeholder="Password" 
                                size="small" 
-                            
+                               onChange={(e)=>setPassword(e.target.value)}
                                   iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)} 
                                   />
                            </FormItem>
                            <FormItem
                                name="password_confirmation"
                                label="Confirm Password"
+                               dependencies={['password']}
                                rules={[{required: true,
-                                whitespace:false,
-                               message: 'Enter the same password as above'}]}>
+                                whitespace:false, 
+                               message: 'Enter the same password as above'},
+                               ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                  if (!value || getFieldValue('password') === value) {
+                                    return Promise.resolve();
+                                  }
+                                  return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                                },
+                              }),
+                            ]}
+                               
+                               hasFeedback
+                               >
        
                                <Input.Password 
                                placeholder="Password" 

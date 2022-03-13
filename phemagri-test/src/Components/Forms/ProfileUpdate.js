@@ -35,13 +35,12 @@ const ProfileForm = ({ visible, onCancel }) => {
     try{
        await axios.post('/profile/update', payload)
       .then(res=>{
-
         if(res.status===200){
-        message.success('Successfully updated profile')
+        message.success('Successfully updated profile');
         updateUser({
-            ...values,
-            id:payload.user_id,
-        })
+          ...values,
+          id:payload.user_id,
+      })
       } else if (res.status===401){
         navigate('/')
       }
@@ -79,9 +78,7 @@ const ProfileForm = ({ visible, onCancel }) => {
         form={form}
         layout="vertical"
         name="profileform"
-        initialValues={{
-          priority: 'highpriority',
-        }}
+        initialValues={{user}}
         autoComplete="off"
       >
       
@@ -89,7 +86,7 @@ const ProfileForm = ({ visible, onCancel }) => {
              name="first_name"
            label="First Name"
         >
-       <Input size="middle" placeholder="first name" defaultValue={user.first_name}/>
+       <Input size="middle" placeholder="first name" defaultValue={user.first_name} />
        </Form.Item>
           <Form.Item
               name="last_name"
