@@ -38,7 +38,7 @@ const ProfileForm = ({ visible, onCancel }) => {
         if(res.status===200){
         message.success('Successfully updated profile');
         updateUser({
-          ...values,
+          ...payload,
           id:payload.user_id,
       })
       } else if (res.status===401){
