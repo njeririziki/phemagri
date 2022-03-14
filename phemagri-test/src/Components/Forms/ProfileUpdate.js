@@ -25,29 +25,39 @@ const ProfileForm = ({ visible, onCancel }) => {
   console.log(user);
   const onFinish = async(values) => {
     console.log('Received values of form: ', values);
-
+      
     const payload = {
       ...values, 
       date_of_birth: values.date_of_birth.format('YYYY-MM-DD'),
       user_id:user.id
     }
+    const newUser = {
+       first_name:payload.first_name? payload.first_name:user.first_name ,
+       last_name: payload.last_name? payload.last_name:user.last_name ,
+       email:payload.email? payload.email:user.email,
+      phone: payload.phone? payload.phone:user.phone ,
+      location:payload.location? payload.location:user.location ,
+      role_id:payload.role_id? payload.role_id:user.role_id ,
+      date_of_birth:values.date_of_birth,
+      id:payload.user_id,
+
+     }
     console.log('Received payload: ', payload);
-    try{
-       await axios.post('/profile/update', payload)
-      .then(res=>{
-        if(res.status===200){
-        message.success('Successfully updated profile');
-        updateUser({
-          ...payload,
-          id:payload.user_id,
-      })
-      } else if (res.status===401){
-        navigate('/')
-      }
-      }).catch(error=> console.log(` Error encountered ${error}`) )  
-    } catch(error){
-      message.error(`This ${error} occured when updating a user`)
-    }
+    console.log('Created new user: ', newUser);
+    updateUser(newUser)
+    // try{
+    //    await axios.post('/profile/update', payload)
+    //   .then(res=>{
+    //     if(res.status===200){
+    //     message.success('Successfully updated profile');
+      
+    //   } else if (res.status===401){
+    //     navigate('/')
+    //   }
+    //   }).catch(error=> console.log(` Error encountered ${error}`) )  
+    // } catch(error){
+    //   message.error(`This ${error} occured when updating a user`)
+    // }
   };
   return (
     <Modal
@@ -64,13 +74,12 @@ const ProfileForm = ({ visible, onCancel }) => {
         form
           .validateFields()
           .then((values) => {
-            form.resetFields();
-            onFinish(values);
+             onFinish(values);
             onCancel();
           })
           .catch((info) => {
             console.log('Validate Failed:', info);
-            onCancel();
+            // onCancel();
           });
       }}
     >
@@ -86,27 +95,27 @@ const ProfileForm = ({ visible, onCancel }) => {
              name="first_name"
            label="First Name"
         >
-       <Input size="middle" placeholder="first name" defaultValue={user.first_name} />
+       <Input size="middle" placeholder="first name" defaultValue={user.first_name} value={user.first_name}/>
        </Form.Item>
           <Form.Item
               name="last_name"
               label="Sir Name"
             >
-         <Input size="middle" placeholder="Sir name" defaultValue={user.last_name} />
+         <Input size="middle" placeholder="Sir name" defaultValue={user.last_name} value={user.last_name} />
           </Form.Item>
         <Form.Item
               name="email"
                 label="Email"
           >
-          <Input size="middle" placeholder="username@domain.com"defaultValue={user.email}/>
+          <Input size="middle" placeholder="username@domain.com"defaultValue={user.email} value={user.email}/>
            </Form.Item>
            <Form.Item
               name="password"
               label="Password"
-             >
+                           >
                <Input.Password 
                   min={4}
-                   placeholder="Password" 
+                   placeholder="*******" 
                   size="middle" 
                 iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)} 
                                   />
@@ -115,7 +124,7 @@ const ProfileForm = ({ visible, onCancel }) => {
           name="phone"
           label="Phone Number"
         >
-          <Input value={"0712351678"} defaultValue={user.phone} />
+          <Input value={user.phone} defaultValue={user.phone}  />
     
         </Form.Item>
         <Form.Item
@@ -123,7 +132,7 @@ const ProfileForm = ({ visible, onCancel }) => {
           label="Role"
         
         >
-         <Select placeholder=''defaultValue={user.role_id}>
+         <Select placeholder=''defaultValue={user.role_id} value={user.role_id}>
             {options(roleTypes)}
           </Select>
         </Form.Item>
@@ -135,7 +144,7 @@ const ProfileForm = ({ visible, onCancel }) => {
               message: 'Please enter your date of birth',
             },
           ]}>
-         <DatePicker/>
+         <DatePicker />
         </Form.Item>
         <Form.Item
           name="location"
@@ -147,7 +156,7 @@ const ProfileForm = ({ visible, onCancel }) => {
             },
           ]}
         >
-          <Input size="middle" />
+              <Input size="middle" />
         </Form.Item>
      
       </Form>

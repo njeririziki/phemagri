@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'antd/dist/antd.css';
-import SignUp from './Pages/SignUp';
-import SignIn from './Pages/SignIn';
+
 import Router from './Routes/Router';
 import reportWebVitals from './reportWebVitals';
 

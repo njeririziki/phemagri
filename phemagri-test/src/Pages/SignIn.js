@@ -36,23 +36,23 @@ const SignIn = () => {
         setLoading(true)
         
         try{
-                const auth= await axios.post('/login',values)
+                const auth= await axios.get('/roles')
                 console.log(auth);
-                const {token,user}= auth.data;
-                if(auth.status === 200){
-                    console.log(user);
-                    console.log(token);
-                    const userName= user.first_name +" "+ user.last_name;
-                    const role = user.role_id ;
+                // const {token,user}= auth.data;
+                 if(auth.status === 200){
+                //     console.log(user);
+                //     console.log(token);
+                //     const userName= user.first_name +" "+ user.last_name;
+                //     const role = user.role_id ;
                            
-                  message.success(`Sucessfuly logged in ${userName}`);
+                  message.success(`Sucessfuly logged in `);
                   //navigating to the user profile page
-                      navigate(`/home/${role}/${userName}`);
-                      //updating the context api
-                      updateUser(user);
-                      createCookie(token);
+                    //   navigate(`/home/${role}/${userName}`);
+                    //   //updating the context api
+                    //   updateUser(user);
+                    //   createCookie(token);
                     
-                     form.resetFields();
+                    //  form.resetFields();
                    
                 } else{
                    message.error('You entered the wrong username or password. Please try again');
@@ -60,7 +60,7 @@ const SignIn = () => {
 
     
     } catch(error){
-        alert(` Encountering ${error}`);
+        alert(` You entered the wrong username or password. Please try again`);
     } 
         setLoading(false)
             
@@ -95,9 +95,22 @@ const SignIn = () => {
                         label="Phone Number"
                         rules={[{required: true,
                             type:'string',
-                            len:10,
+                            // len:10,
                             whitespace:false,
-                        message: 'Phone number should be only 10 digits with no spaces'}]}>
+                            message:" Please input your phone number, it should be 10 digits"
+                      },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                // let val= value.length;
+                                // console.log(`val is ${val}`)
+                              if ( value.startsWith(0, 0) ) {
+                                return Promise.resolve();
+                              }
+                               return Promise.reject(new Error('phone number is should have start with zero no spaces'));
+                            },
+                         
+                          }),
+                        ]}>
                         <Input size="large" placeholder="" />
                     </FormItem>
 

@@ -37,11 +37,11 @@ const SignUp = () => {
             // console.log(auth);
             const {token,user}= auth.data;
             if(auth.status === 201){
-        //    /     console.log(user);
-                // console.log(token);
+      
                 const userName= user.first_name +" "+ user.last_name;
                 const role = user.role_id
-              message.success(`Sucessfuly logged in ${userName}`);
+               // const roleName= roleTypes.find((item)=> item.id===role)
+              message.success(`Welcome to Phema-Agri ${userName} `);
                   navigate(`/home/${role}/${userName}`);
                    updateUser(user);
                    createCookie(token);
@@ -49,28 +49,17 @@ const SignUp = () => {
                  form.resetFields();
                
             } else{
-               message.error('You entered the wrong username or password. Please try again');
+               message.error('Something went wrong.');
             }
 
-
         } catch(error){
-            alert(` Encountering ${error}`);
+            alert(` Please enter correct details`);
         }  
           setLoading(false);
             
     }
-    //  const validatePassword =()=>{
-        
-        
-    //  }
-     const validatePassword  = (_, value) => {
-        if (value.number === password) {
-          return Promise.resolve();
-          setDisable(true)
-        }
-    
-        return Promise.reject(new Error('Confirm password must be the same as password'));
-      };
+
+  
     const onFinishFailed=(errorInfo)=>{
     message.error(`Failed to register user.Please try again`)
     }
@@ -98,23 +87,18 @@ const SignUp = () => {
                             //   tooltip="Format 0711223344 no spaces"
                                rules={[{required: true,
                                 type:'string',
-                               
+                              // len:10,
                                message: 'Phone Number should be 10 digits',
                                 whitespace:false },
                                 ({ getFieldValue }) => ({
                                     validator(_, value) {
-                                      if (!value || value !== " ") {
+                                      if (!value &&  value.startsWith(0, 0)) {
                                         return Promise.resolve();
                                       }
-                                       return Promise.reject(new Error('phone number is should have 10 digits'));
+                                       return Promise.reject(new Error('phone number is should have 10 digits, starts with a 0 with no spaces'));
                                     },
-                                    // len(_,value){
-                                    //     if(value ===10){
-                                    //         return Promise.resolve();
-                                    //     }
-                                    //     return Promise.reject(new Error('phone number is less than 10'));
-                                    // }
-                                  }),]}>
+                                 
+                                  })]}>
                                <Input size="small" placeholder="0711223344" />
                            </FormItem>
                            <FormItem

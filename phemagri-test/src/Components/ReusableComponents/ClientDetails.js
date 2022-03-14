@@ -12,13 +12,13 @@ const Dets=({details})=>(
     
     <Typography.Title level={4}>
     {details.name} 
-    </Typography.Title >
+    </Typography.Title > <br/>
     <Typography.Text level={3}>
     {details.phone} 
-    </Typography.Text>
-    {/* <Typography.Text level={3}>
-    {details.email} 
-    </Typography.Text> */}
+    </Typography.Text> <br/>
+<Typography.Text level={3}>
+{details.email} 
+</Typography.Text>
 
     </div>
    
@@ -27,20 +27,21 @@ const Edit=({details})=>(
     <div>
  
     <Typography.Title level={4}>
-    UserName:{details.name}
-    </Typography.Title>
+    {details.name}
+    </Typography.Title> <br/>
     <Typography.Text>
-   Phone Number: {details.phone} 
-    </Typography.Text>
+   Phone: {details.phone} 
+    </Typography.Text>  <br/>
     <Typography.Text>
      Email: {details.email} 
-    </Typography.Text>
+    </Typography.Text> <br/>
     {/* <Typography.Text>
   Role: {details.role_id} 
     </Typography.Text> */}
     <Typography.Text>
   Location: {details.location} 
-    </Typography.Text>
+    </Typography.Text><br/>
+  
    
     </div>
 

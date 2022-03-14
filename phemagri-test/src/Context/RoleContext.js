@@ -8,7 +8,8 @@ const RoleContext = createContext({
     updateUser:()=>{},
 });
 
-const initUser= {role:'Farmer', email:'njeri@test.com', username:'Njeri'};
+const initUser= {role:'Farmer', email:'njeri@test.com', first_name:'Njeri', role_id:1,
+    last_name:'Kari', phone:'07348790', id:93, location:'Kawi'};
 // This function provides components with the data stored.
 const RoleProvider = ({children})=>{
 
